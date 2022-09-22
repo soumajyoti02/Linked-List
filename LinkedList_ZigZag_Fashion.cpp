@@ -46,7 +46,7 @@ Simple Approach for this program is as Follows :
    
  --> If check is false then it's one of 2nd,4th,6th,... case; so So check CUR > CUR->NEXT or not. If not then swap them.
     
-3) Finally return head.
+3) Finally return head.'
     
 
 
