@@ -75,44 +75,27 @@ struct Node
 
 */
 
-class Solution
-{
-    public:
-    //Function to remove a loop in the linked list.
-    void removeLoop(Node* head)
-    {
-        if(head == NULL or head->next == NULL)
-            return;
-        Node* slow = head, *fast = head;
-        // Move both pointers a step forward to start while loop. Else in first iteration, loop will breaks.
-        slow = slow->next;
-        fast = fast->next->next;
-        while(fast!= NULL and fast->next != NULL)
-        {
-            if(slow == fast)
-                break;
-            slow = slow->next;
-            fast = fast->next->next;
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+        if(head==NULL || head->next==NULL){
+            return NULL;
         }
-        // From Now, Increse fast pointer by 1.
-        if(slow == fast)
-        {
-            slow = head;
-            if(slow == fast) // Checking if the loop Starts from head Node ?
-            {
-                while(fast->next != slow)
-                    fast = fast->next; 
-                fast->next = NULL;
-            }
-            else
-            {
-                while(slow->next != fast->next)
-                {
-                    slow = slow->next;
-                    fast = fast->next;
-                }
-                fast->next = NULL;
-            }
-        }
+        ListNode *start=head;
+        ListNode * slow=head;
+        ListNode * fast=head;
+        
+       while(fast->next!=NULL && fast->next->next!=NULL){
+           slow=slow->next;
+           fast=fast->next->next;
+           if(slow==fast){
+               while(start != slow){
+                   slow=slow->next;
+                   start=start->next;
+               }
+               return start;
+           }
+       }
+       return NULL;
     }
 };
